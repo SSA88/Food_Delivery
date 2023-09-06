@@ -4,6 +4,8 @@ import 'package:finalapppp/controller/bloc/signup/signup_state.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../controller/bloc/signup/signup_bloc.dart';
 
@@ -36,6 +38,18 @@ class _SignUpOldState extends State<SignUpOld> {
     // TODO: implement initState
     super.initState();
   }
+  facebookLogin() async {
+    final res = await FacebookAuth.i.login(permissions:['public_profile','email'] );
+    if(res.status==LoginStatus.success){
+          final userdata=await FacebookAuth.i.getUserData();
+          print("dataaaa");
+          print(userdata);
+
+        }
+
+
+  }
+
 
   @override
 
@@ -251,17 +265,20 @@ class _SignUpOldState extends State<SignUpOld> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
-                          Container(
-                            height: 60,
-                            width: 60,
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white.withOpacity(0.1),
-                                border: Border.all(color: Colors.grey)),
-                            child: Icon(
-                              Icons.face,
-                              size: 30,
-                              color: Colors.grey,
+                          InkWell(
+                            onTap: (){facebookLogin();},
+                            child: Container(
+                              height: 60,
+                              width: 60,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white.withOpacity(0.1),
+                                  border: Border.all(color: Colors.grey)),
+                              child: Icon(
+                                Icons.face,
+                                size: 30,
+                                color: Colors.grey,
+                              ),
                             ),
                           ),
                           Container(

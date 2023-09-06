@@ -16,6 +16,7 @@ import 'package:finalapppp/ui/recommended/recommended.dart';
 import 'package:finalapppp/ui/search/filters_screen.dart';
 import 'package:finalapppp/ui/search/search_screen.dart';
 import 'package:finalapppp/ui/sign_up/sign_up.dart';
+import 'package:finalapppp/ui/sign_up/signup_.dart';
 import 'package:finalapppp/widgets/CheckoutOrders/deliver_address_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -59,7 +60,7 @@ class AppRoutes {
     switch (setting.name) {
       case "/":
         return MaterialPageRoute(
-            builder: (context) =>  const SplashScreen(
+            builder: (context) =>  const SignUpOld(
             ));
       case LoginIntro.routeName:
         return MaterialPageRoute(builder: (context) => const LoginIntro());
